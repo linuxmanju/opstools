@@ -51,7 +51,8 @@ class run_recursive:
             format_data = {
                 "name": os.path.basename(file),
                 "output": output,
-                "status": status
+                "status": status,
+                "handlers": "flapjack"
             }
             jsn = json.dumps(format_data)
             api_call = apify(server_ip, port, jsn)

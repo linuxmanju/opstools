@@ -8,6 +8,8 @@ RUN ["apt-get","update"]
 RUN ["apt-get","-y","install","sensu"]
 ADD config.json /etc/sensu/config.json
 RUN ["/opt/sensu/embedded/bin/gem","install","sensu-plugin"]
+ADD extensions /etc/sensu/extensions
 ADD entry_script.sh /entry_script.sh
+ADD conf.d /etc/sensu/conf.d
 ENTRYPOINT ["/entry_script.sh"]
 CMD ["sensu"]
