@@ -1,0 +1,82 @@
+#!/usr/bin/env python
+
+import subprocess, socket, json,time
+from subprocess import PIPE
+import os, glob
+
+check_folder = "/opt/sensu/checks/"
+file_lists = glob.glob("%s/*" % check_folder)
+server_ip = "127.0.0.1"
+port = "3030"
+run_in_loop_interval=20 # Default 20 seconds
+
+
+class get_output:
+    def __init__(self, filename):
+        self.filename = filename
+
+    def run_cmd(self):
+        c = subprocess.Popen(self.filename,
+                             shell=True,
+                             stdout=PIPE,
+                             stderr=PIPE)
+        data = c.communicate().splitlines()[0]
+        if data[0] == "":
+            o = data[1]
+        else:
+            o = data[0]
+
+        output, exitstat = o, c.returncode
+
+        return output, exitstat
+
+
+class run_recursive:
+    def __init__(self, file_lists=""):
+        self.file_lists = file_lists
+
+    def do_sutff(self):
+
+        for file in self.file_lists:
+            if not os.access(file,os.X_OK):
+                print "%s has no executable bit set, checking if it can set exec bit" %file
+                st=os.stat(file)
+                try:
+                    os.chmod(file,st.st_mode|0o111)
+                except:
+                    print "Unable to change permission for %s, please change manually using chmod +x %s, ignoring and continuing" %(file,file)
+                    continue
+            r = get_output(file)
+            output, status = r.run_cmd()
+            format_data = {
+                "name": os.path.basename(file),
+                "output": output,
+                "status": status
+            }
+            jsn = json.dumps(format_data)
+            api_call = apify(server_ip, port, jsn)
+            api_call.net_client()
+            print jsn
+
+
+class apify:
+    def __init__(self, server_ip, port, jsn):
+        self.server_ip = server_ip
+        self.port = int(port)
+        self.jsn = jsn
+
+    def net_client(self):
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect((self.server_ip, self.port))
+        s.sendall(self.jsn)
+        s.close()
+
+
+while True:
+    try:
+        a = run_recursive(file_lists)
+        a.do_sutff()
+        time.sleep(run_in_loop_interval)
+    except:
+        print "Unable to create process"
+        continue
