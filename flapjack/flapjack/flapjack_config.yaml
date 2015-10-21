@@ -70,7 +70,7 @@ production:
       # these values are passed directly through to EventMachine::Protocols::SmtpClient configuration,
       # and can be omitted if the defaults are acceptable
       smtp_config:
-        # from: "Flapjack Example <flapjack@noreply.example>"
+        from: "Flapjack Example <flapjack@noreply.example>"
         # reply_to: "flapjack@support.example"
         host: 127.0.0.1
         # 1025 is the default port for http://mailcatcher.me
@@ -316,7 +316,7 @@ development:
       # these values are passed directly through to EventMachine::Protocols::SmtpClient configuration,
       # and can be omitted if the defaults are acceptable
       smtp_config:
-        # from: "Flapjack Example <flapjack@noreply.example>"
+        from: "Flapjack Example <flapjack@noreply.example>"
         # reply_to: "flapjack@support.example"
         host: 127.0.0.1
         # 1025 is the default port for http://mailcatcher.me
