@@ -4,6 +4,7 @@ import subprocess, socket, json, time
 from subprocess import PIPE
 import os, glob, shlex
 
+
 check_folder = "/opt/sensu/checks/"
 file_lists = glob.glob("%s/*" % check_folder)
 server_ip = "127.0.0.1"
@@ -112,7 +113,8 @@ while True:
     try:
         a = run_recursive(file_lists)
         a.do_sutff()
-        time.sleep(run_in_loop_interval)
     except:
         print "Unable to create process"
         continue
+    time.sleep(run_in_loop_interval)
+    
