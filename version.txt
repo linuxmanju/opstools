@@ -6,22 +6,7 @@ lll
 llllll1
 
 
-appowner:*:87:87:Application Owner:/var/empty:/usr/bin/false
-_windowserver:*:88:88:WindowServer:/var/empty:/usr/bin/false
-_spotlight:*:89:89:Spotlight:/var/empty:/usr/bin/false
-_tokend:*:91:91:Token Daemon:/var/empty:/usr/bin/false
-_securityagent:*:92:92:SecurityAgent:/var/empty:/usr/bin/false
-_calendar:*:93:93:Calendar:/var/empty:/usr/bin/false
-_teamsserver:*:94:94:TeamsServer:/var/teamsserver:/usr/bin/false
-_update_sharing:*:95:-2:Update Sharing:/var/empty:/usr/bin/false
-_installer:*:96:-2:Installer:/var/empty:/usr/bin/false
-_atsserver:*:97:97:ATS Server:/var/empty:/usr/bin/false
-_ftp:*:98:-2:FTP Daemon:/var/empty:/usr/bin/false
-_unknown:*:99:99:Unknown User:/var/empty:/usr/bin/false
-_softwareupdate:*:200:200:Software Update Service:/var/empty:/usr/bin/false
-_coreaudiod:*:202:202:Core Audio Daemon:/var/empty:/usr/bin/false
-_screensaver:*:203:203:Screensaver:/var/empty:/usr/bin/false
-_locationd:*:205:205:Location Daemon:/var/db/locationd:/usr/bin/false
+afalse
 _trustevaluationagent:*:208:208:Trust Evaluation Agent:/var/empty:/usr/bin/false
 _timezone:*:210:210:AutoTimeZoneDaemon:/var/empty:/usr/bin/false
 _lda:*:211:211:Local Delivery Agent:/var/empty:/usr/bin/false
